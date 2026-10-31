@@ -31,8 +31,8 @@ test('the raw JSON export and license preserve the upstream files byte for byte'
   expect(require(`universities-domains-list/${dataFile}`)).toEqual(source);
 
   for (const file of [dataFile, 'LICENSE.txt']) {
-    expect(readFileSync(new URL(file, packageRoot))).toEqual(
-      readFileSync(new URL(file, repositoryRoot)),
-    );
+    const packaged = readFileSync(new URL(file, packageRoot));
+    const upstream = readFileSync(new URL(file, repositoryRoot));
+    expect(packaged.equals(upstream), file).toBe(true);
   }
 });
