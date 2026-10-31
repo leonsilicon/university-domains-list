@@ -9,11 +9,15 @@ Example usecases:
 - You can create a validation script that checks the email domain.
 - You can automatically generate a user's country and university by looking at their emails.
 
-You can use this data source in three ways:
+This fork also provides an npm package in
+[`npm/universities-domains-list`](npm/universities-domains-list), built with Vite+ and Bun.
+
+You can use this data source in four ways:
 
 - Use the JSON file as your data source and do whatever you like with your favourite programming language.
 - Use free hosted-API.
 - Use the tiny Python app to serve a fast API that you can query data.
+- Use the npm package to import the data in JavaScript or TypeScript.
 
 ### 1 - Using the Data Source
 
@@ -70,6 +74,17 @@ The hosted API uses [university-domains-list-api](https://github.com/Hipo/univer
 ### 3 - Using the built-in API on your server
 
 You can access the python API via [university-domains-list-api](https://github.com/Hipo/university-domains-list-api)
+
+### 4 - Using the npm package
+
+```js
+import universities from 'universities-domains-list';
+
+const canadianUniversities = universities.filter((university) => university.alpha_two_code === 'CA');
+```
+
+See the [package README](npm/universities-domains-list/README.md) for installation,
+raw JSON imports, and the Bun / Vite+ build and publishing workflow.
 
 # Contribution
 

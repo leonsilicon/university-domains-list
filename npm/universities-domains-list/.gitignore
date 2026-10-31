@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.vite/
+.vite-plus/
+*.tgz
+/world_universities_and_domains.json
+/LICENSE.txt

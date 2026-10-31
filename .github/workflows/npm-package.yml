@@ -1,0 +1,39 @@
+name: npm package
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'world_universities_and_domains.json'
+      - 'LICENSE.txt'
+      - 'npm/universities-domains-list/**'
+      - '.github/workflows/npm-package.yml'
+  pull_request:
+    paths:
+      - 'world_universities_and_domains.json'
+      - 'LICENSE.txt'
+      - 'npm/universities-domains-list/**'
+      - '.github/workflows/npm-package.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: npm/universities-domains-list
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+      - run: bun run check
+      - run: bun run test
+      - run: bun run release --dry-run
