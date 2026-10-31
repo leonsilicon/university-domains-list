@@ -87,6 +87,8 @@ change the packaged data.
 
 Vite+ delegates package management to the pinned Bun version through `vp pm`.
 The `prepack` hook rebuilds the package before packing or publishing.
+Bun requires npm authentication even for a publishing dry run. CI uses
+`bunx --no-install vp pm pack -- --dry-run` to check packaging without credentials.
 
 ```bash
 # Create an installable tarball without publishing.
